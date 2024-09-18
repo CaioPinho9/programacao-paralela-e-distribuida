@@ -1,0 +1,35 @@
+Executar o exemplo ex1.c
+
+- Você vai observar o uso da estrutura de sincronização mutex
+- O programa de ser inicializado com um número de threads. Exemplo:
+./ex1 8
+- Você pode alterar o valor de THINKING_TIME, que representa o tempo máximo que as threads aguardam uma vez que estejam na região crítica 
+- Observe o escopo das variáveis utilizadas no programa (global: mutex e compartilhada; local: n_threads, ids[n_threads], i e threads)
+
+
+Executar o exemplo ex2.c
+- Você vai observar o uso da estrutura de sincronização semaphore
+- O programa de ser inicializado com um número de threads (semelhante ao exemplo ex1.c). Exemplo:
+./ex2 16
+- Você pode alterar os valores de THINKING_TIME e INIT_THREAD_INTERVAL, que representam: o tempo máximo que as threads aguardam uma vez que estejam na região crítica e o tempo entre a criação de novas threads no sistema, respectivamente.
+
+Q1: Quais valores você observa no valor do semáforo para diferentes execuções? (exemplo de saída abaixo)
+thread 0 adquiriu o semaforo (valor = 1)
+thread 1 adquiriu o semaforo (valor = 0)
+thread 1 liberou o semaforo
+thread 2 adquiriu o semaforo (valor = 0)
+thread 2 liberou o semaforo
+
+Q2: Porque apenas o valor 1 aparece quando todas as threads iniciam rapidamente?
+
+Q3: Altere o valor de INIT_THREAD_INTERVAL de modo a aumentar o intervalo entre a criação de threads. O que você observa na saída do programa. Explique o que mudou comparado com a exemplo ilustrado em Q1?
+
+ 
+Executar o exemplo ex3.c
+
+- Observe o escopo das variáveis utilizadas no programa (globais e locais)
+- Neste exemplo são permitidas a entrada de mais de uma thread na região do semáforo (semáforo inicializado com contador = 2)
+- O acesso exclusivo à variável compartilhada ainda se dá pelo uso do mutex
+- Observe o valor do contador, modifique valores de THINKING_TIME e INIT_THREAD_INTERVAL e veja o que acontece.
+
+

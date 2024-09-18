@@ -57,8 +57,8 @@ void PoW_single_thread(char *data, int num_zeros)
 
         if (check_hash_zeros(hash_str, num_zeros))
         {
-            printf("Sucesso! Valor do nonce: %lld\n", nonce);
-            printf("Hash: %s\n", hash_str);
+            // printf("Sucesso! Valor do nonce: %lld\n", nonce);
+            // printf("Hash: %s\n", hash_str);
             break;
         }
         nonce++;
@@ -134,11 +134,10 @@ void create_threads(char data[], int num_zeros)
     }
 }
 
-#define NUM_SIMULATIONS 100
+#define NUM_SIMULATIONS 10
 
 int main(int argc, char **argv)
 {
-    double mean = 0;
 
     char data[] = "Exemplo de dados do bloco"; // Representa o conteudo do bloco
     int num_zeros;                             // Numero de zeros requeridos no final do hash
@@ -153,20 +152,20 @@ int main(int argc, char **argv)
 
     printf("Executando PoW ...\n");
 
+    double mean = 0;
     for (int i = 0; i < NUM_SIMULATIONS; i++)
     {
         struct timeval t1, t2;
         gettimeofday(&t1, NULL);
-        // create_threads(data, num_zeros);
+        create_threads(data, 8);
 
-        PoW_single_thread(data, num_zeros);
+        // PoW_single_thread(data, j);
 
         gettimeofday(&t2, NULL);
         double t_total = (t2.tv_sec - t1.tv_sec) + ((t2.tv_usec - t1.tv_usec) / 1000000.0);
 
         mean = (mean * i + t_total) / (i + 1);
-
-        printf("rolling mean = %f\n", mean);
+        printf("%d: %f\n", 8, mean);
     }
 
     return 0;
