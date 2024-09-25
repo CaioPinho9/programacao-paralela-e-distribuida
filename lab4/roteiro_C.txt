@@ -1,0 +1,35 @@
+Variáveis de condição:
+
+1. Explicar o conceito 
+2. Explicar o funcionamento do código (Alo .. mundo)
+3. Explicar o pthread_cond_wait() - libera o mutex e quando retornar, obtém o mutex novamente
+4. Explicar o pthread_cond_signal
+
+5. Adicionar na linha 31 (antes do lock na thread alo)
+	sleep(1);
+
+6. Adicionar uma segunda thread mundo: Vai dar problema (uma das threads não será sinalizada)
+   int r3 = pthread_create(&t3, NULL, thread_mundo, &compartilhada);
+   r3 = pthread_join(t3, NULL);
+
+7. Comentar a razão de usar while(!var->pronto) ao invés de if - é porque a thread poderia ser notificada por outras fontes (outras threads). Então ela verifica a condição e aguarda novamente
+
+8. Explicar o pthread_cond_broadcast
+   Substituir signal por:
+	//pthread_cond_broadcast(&var->var_cond);
+
+9. Explicar barreira
+   
+10. Adicionar mais uma thread: 
+
+   Se usar //pthread_barrier_init(&barreira, NULL, 2); 
+   Vai dar problema!
+	
+   //pthread_t t1, t2, t3;
+   //pthread_barrier_init(&barreira, NULL, 3);
+   //int r3 = pthread_create(&t3, NULL, thread_mundo, NULL);
+	//if (r1 || r2 || r3) {	
+	//r3 = pthread_join(t3, NULL);
+	//if (r1 || r2 || r3) {	
+  
+

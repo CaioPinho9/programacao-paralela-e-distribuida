@@ -2,6 +2,8 @@
     "files.associations": {
         "*.php": "php",
         "*.rmd": "markdown",
-        "time.h": "c"
+        "time.h": "c",
+        "stdio.h": "c",
+        "pthread.h": "c"
     }
 }
